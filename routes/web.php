@@ -16,8 +16,12 @@ Route::group(['middleware' => config('fortify.middleware', ['web'])], function (
 });
 
 Route::get('/login', function () {
-    return Inertia::render('Auth/Login');
+    return Inertia::render('auth/login');
 })->middleware('guest')->name('login');
+
+Route::get('/register', function () {
+    return Inertia::render('auth/register');
+})->middleware('guest')->name('register');
 
 Route::get('/', function () {
     return Inertia::render('welcome');

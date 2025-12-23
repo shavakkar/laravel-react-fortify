@@ -2,13 +2,11 @@ import { useForm, usePage } from "@inertiajs/react";
 
 export default function Login(){
 
-    
-
     const { data, setData, post, processing } = useForm({
         email: '',
         password: ''
     });
-    const { flash, errors } : any = usePage().props;
+    const { errors } : any = usePage().props;
 
     const submit = (e: any) => {
         e.preventDefault();
@@ -17,7 +15,6 @@ export default function Login(){
 
     return(
         <form onSubmit={submit} className="flex flex-col max-w-md mx-auto mt-8 p-4 rounded space-y-4 bg-gray-200">
-            { flash?.message && <div>{flash.message}</div> }
 
             { errors?.email && <div>{errors.email}</div> }
             { errors?.password && <div>{errors.password}</div> }
@@ -40,7 +37,7 @@ export default function Login(){
                 onChange={e => setData('password', e.target.value)}
             />
 
-            <button type="submit" disabled={processing}>Login</button>
+            <button type="submit" disabled={processing}>Register</button>
 
         </form>
     );
