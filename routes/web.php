@@ -7,19 +7,18 @@ use Laravel\Fortify\Http\Controllers\AuthenticatedSessionController;
 
 
 Route::group(['middleware' => config('fortify.middleware', ['web'])], function (){
-   Route::middleware('auth')->group(function (){
+    Route::middleware('auth')->group(function (){
 
-    Route::get('/', function () {
-        return Inertia::render('welcome');
-    })->middleware(['guest:' . config('fortify.guard')])->name('home');
+        Route::get('/', function () {
+            return Inertia::render('welcome');
+        })->name('home');
+
+    });
 
     Route::post('/login', [AuthenticatedSessionController::class, 'store'])->middleware(['guest:' . config('fortify.guard')])->name('login');
 
     Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
 
-    Route::post('/register', [RegisteredUserController::class, 'store'])->middleware(['guest:' . config('fortify.guard')])->name('register');
-    
-   });
 });
 
 Route::get('/login', function () {
